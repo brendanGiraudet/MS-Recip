@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "59904e77-1ec5-40d3-8e36-704350dc93de",
+		"name": "MS-Recip",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23806707",
+		"_collection_link": "https://bakayaru.postman.co/workspace/Team-Workspace~541a9c44-c0ea-4244-8532-846acb88cbb2/collection/23806707-59904e77-1ec5-40d3-8e36-704350dc93de?action=share&source=collection_link&creator=23806707"
+	},
+	"item": [
+		{
+			"name": "Ingredients",
+			"item": [
+				{
+					"name": "/odata/Ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Ingredients(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Ingredients(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"string\",\r\n  \"image\": \"string\",\r\n  \"deleted\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Ingredients",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Ingredients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Ingredients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"patchstring\",\r\n  \"image\": \"patchstring\",\r\n  \"deleted\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Ingredients(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "/odata/Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Categories(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Categories(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"string\",\r\n  \"deleted\": false,\r\n  \"recips\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"name\": \"patchstring\",\r\n  \"deleted\": false,\r\n  \"recips\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Categories(3fa85f64-5717-4562-b3fc-2c963f66afa6)"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

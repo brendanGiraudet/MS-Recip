@@ -1,0 +1,24 @@
+version: "3.4"
+services:
+  ms-recip:
+    image: bakayarusama/ms-recip:1.0.0
+    container_name: ms-recip
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - configuration=Debug
+        - plateform=windows/amd64
+    ports: 
+      - 1717:8080
+    
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ApplicationVersion: 1.0.0
+      ConnectionStrings__Database: "Data Source=/app/Data/database.db"
+
+    volumes:
+      - C:\Users\brend\Source\Repos\brendanGiraudet\MS-Recip\ms-recip\Data:/app/Data
+      
+    restart: always
