@@ -14,7 +14,7 @@ public class ProfilsController(IProfilsRepository profilsRepository) : ODataCont
     [EnableQuery]
     public IActionResult Get()
     {
-        var getResult = _profilsRepository.GetProfils();
+        var getResult = _profilsRepository.GetItems();
 
         if (getResult.IsSuccess) return Ok(getResult.Value);
 
@@ -24,7 +24,7 @@ public class ProfilsController(IProfilsRepository profilsRepository) : ODataCont
     [EnableQuery]
     public async Task<IActionResult> GetAsync([FromODataUri] Guid key)
     {
-        var getResult = await _profilsRepository.GetProfilAsync(key);
+        var getResult = await _profilsRepository.GetItemAsync(k => k.Id == key);
 
         if (getResult.IsSuccess && getResult.Value is not null) return Ok(getResult.Value);
 
@@ -34,9 +34,9 @@ public class ProfilsController(IProfilsRepository profilsRepository) : ODataCont
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody] ProfilModel config)
+    public async Task<IActionResult> PostAsync([FromBody] ProfilModel item)
     {
-        var createResult = await _profilsRepository.CreateProfilAsync(config);
+        var createResult = await _profilsRepository.CreateItemAsync(item);
 
         if (createResult.IsSuccess) return Created(createResult.Value);
 
@@ -44,11 +44,11 @@ public class ProfilsController(IProfilsRepository profilsRepository) : ODataCont
     }
 
     [HttpPatch]
-    public async Task<IActionResult> PatchAsync([FromODataUri] Guid key, [FromBody] ProfilModel ingredient)
+    public async Task<IActionResult> PatchAsync([FromODataUri] Guid key, [FromBody] ProfilModel item)
     {
-        var updateResult = await _profilsRepository.UpdateProfilAsync(key, ingredient);
+        var updateResult = await _profilsRepository.UpdateItemAsync(k => k.Id == key, item);
 
-        if (updateResult.IsSuccess) return Ok(ingredient);
+        if (updateResult.IsSuccess) return Ok(item);
 
         return StatusCode(StatusCodes.Status500InternalServerError, updateResult.Message);
     }
@@ -56,7 +56,7 @@ public class ProfilsController(IProfilsRepository profilsRepository) : ODataCont
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync([FromODataUri] Guid key)
     {
-        var deleteResult = await _profilsRepository.DeleteProfilAsync(key);
+        var deleteResult = await _profilsRepository.DeleteItemAsync(k => k.Id == key);
 
         if (deleteResult.IsSuccess && deleteResult.Value == true) return Ok();
 

@@ -2,67 +2,66 @@
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
-using Microsoft.EntityFrameworkCore;
-using ms_recip.Data;
 using ms_recip.Models;
+using ms_recip.Repository.CategoriesRepository;
 
 namespace ms_recip.Controllers;
 
-public class CategoriesController(DatabaseContext context) : ODataController
+public class CategoriesController(ICategoriesRepository categoriesRepository) : ODataController
 {
-    private readonly DatabaseContext _context = context;
+    private readonly ICategoriesRepository _categoriesRepository = categoriesRepository;
 
     [EnableQuery]
     public IActionResult Get()
     {
-        return Ok(_context.Categories);
+        var getResult = _categoriesRepository.GetItems();
+
+        if (getResult.IsSuccess) return Ok(getResult.Value);
+
+        return StatusCode(StatusCodes.Status500InternalServerError, getResult.Message);
     }
 
     [EnableQuery]
-    public IActionResult Get([FromODataUri] Guid key)
+    public async Task<IActionResult> GetAsync([FromODataUri] Guid key)
     {
-        var config = _context.Categories.FirstOrDefault(c => c.Id == key);
-        if (config == null)
-        {
-            return NotFound();
-        }
-        return Ok(config);
+        var getResult = await _categoriesRepository.GetItemAsync(k => k.Id == key);
+
+        if (getResult.IsSuccess && getResult.Value is not null) return Ok(getResult.Value);
+
+        if (getResult.IsSuccess && getResult.Value is null) return NotFound();
+
+        return StatusCode(StatusCodes.Status500InternalServerError, getResult.Message);
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] CategoryModel config)
+    public async Task<IActionResult> PostAsync([FromBody] CategoryModel item)
     {
-        _context.Categories.Add(config);
-        _context.SaveChanges();
+        var createResult = await _categoriesRepository.CreateItemAsync(item);
 
-        return Created(config);
+        if (createResult.IsSuccess) return Created(createResult.Value);
+
+        return StatusCode(StatusCodes.Status500InternalServerError, createResult.Message);
     }
-    
+
     [HttpPatch]
-    public IActionResult Patch([FromODataUri] Guid key, [FromBody] CategoryModel ingredient)
+    public async Task<IActionResult> PatchAsync([FromODataUri] Guid key, [FromBody] CategoryModel item)
     {
-        var actualIngredient = _context.Categories.AsNoTracking().FirstOrDefault(c => c.Id == key);
+        var updateResult = await _categoriesRepository.UpdateItemAsync(k => k.Id == key, item);
 
-        if(actualIngredient == null) return NotFound();
+        if (updateResult.IsSuccess) return Ok(item);
 
-        _context.Categories.Update(ingredient);
-        _context.SaveChanges();
-
-        return Ok(ingredient);
+        return StatusCode(StatusCodes.Status500InternalServerError, updateResult.Message);
     }
-    
+
     [HttpDelete]
-    public IActionResult Delete([FromODataUri] Guid key)
+    public async Task<IActionResult> DeleteAsync([FromODataUri] Guid key)
     {
-        var actualIngredient = _context.Categories.FirstOrDefault(c => c.Id == key);
+        var deleteResult = await _categoriesRepository.DeleteItemAsync(k => k.Id == key);
 
-        if(actualIngredient == null) return NotFound();
+        if (deleteResult.IsSuccess && deleteResult.Value == true) return Ok();
 
-        actualIngredient.Deleted = true;
+        if (deleteResult.IsSuccess && deleteResult.Value == false) return NotFound();
 
-        _context.Categories.Update(actualIngredient);
-        _context.SaveChanges();
-
-        return Ok(actualIngredient);
+        return StatusCode(StatusCodes.Status500InternalServerError, deleteResult.Message);
     }
 }

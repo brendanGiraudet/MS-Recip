@@ -8,7 +8,7 @@ public record MethodResult<T>
     
     public string? Message { get; set; }
 
-    public static MethodResult<T> CreateSuccessResult(T value, string? message = null) => new MethodResult<T> { 
+    public static MethodResult<T> CreateSuccessResult(T? value, string? message = null) => new MethodResult<T> { 
         IsSuccess = true, 
         Message = message,
         Value = value
