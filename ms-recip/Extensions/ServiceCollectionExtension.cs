@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.ModelBuilder;
 using ms_recip.Data;
 using ms_recip.Models;
+using ms_recip.Repository.ProfilsRepository;
+using ms_recip.Services.LoggerService;
 using System.Text.Json.Serialization;
 
 
@@ -16,13 +18,14 @@ public static class ServiceCollectionExtension
         services.AddDbContext<DatabaseContext>(options =>
             options.UseSqlite(connectionString));
     }
-    
+
     public static void AddODataContext(this IServiceCollection services)
     {
         var modelBuilder = new ODataConventionModelBuilder();
         modelBuilder.EntitySet<RecipModel>(nameof(DatabaseContext.Recips));
         modelBuilder.EntitySet<IngredientModel>(nameof(DatabaseContext.Ingredients));
         modelBuilder.EntitySet<CategoryModel>(nameof(DatabaseContext.Categories));
+        modelBuilder.EntitySet<ProfilModel>(nameof(DatabaseContext.Profils));
 
         services.AddControllers()
             .AddOData(
@@ -34,5 +37,15 @@ public static class ServiceCollectionExtension
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
+    }
+
+    public static void AddCustomServices(this IServiceCollection services)
+    {
+        services.AddTransient<ILogger, LoggerService>();
+    }
+    
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddTransient<IProfilsRepository, ProfilsRepository>();
     }
 }

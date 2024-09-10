@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ms_recip.Data;
 
@@ -10,9 +11,11 @@ using ms_recip.Data;
 namespace ms_recip.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240910140426_AddMissingDeletedColumnForProfil")]
+    partial class AddMissingDeletedColumnForProfil
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -79,21 +82,6 @@ namespace ms_recip.Migrations
                     b.ToTable("IngredientQuantities");
                 });
 
-            modelBuilder.Entity("ms_recip.Models.ProfilCategoryModel", b =>
-                {
-                    b.Property<Guid>("ProfilId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProfilId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("ProfilCategories");
-                });
-
             modelBuilder.Entity("ms_recip.Models.ProfilModel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -138,9 +126,14 @@ namespace ms_recip.Migrations
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("ProfilModelId")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("RecipId", "CategoryId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProfilModelId");
 
                     b.ToTable("RecipCategories");
                 });
@@ -155,7 +148,7 @@ namespace ms_recip.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CookingDuration")
+                    b.Property<DateTime>("CookingDuration")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Deleted")
@@ -234,25 +227,6 @@ namespace ms_recip.Migrations
                     b.Navigation("Recip");
                 });
 
-            modelBuilder.Entity("ms_recip.Models.ProfilCategoryModel", b =>
-                {
-                    b.HasOne("ms_recip.Models.CategoryModel", "Category")
-                        .WithMany("Profils")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ms_recip.Models.ProfilModel", "Profil")
-                        .WithMany("Categories")
-                        .HasForeignKey("ProfilId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Profil");
-                });
-
             modelBuilder.Entity("ms_recip.Models.RecipCalendarModel", b =>
                 {
                     b.HasOne("ms_recip.Models.RecipModel", "Recip")
@@ -279,6 +253,10 @@ namespace ms_recip.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ms_recip.Models.ProfilModel", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("ProfilModelId");
 
                     b.HasOne("ms_recip.Models.RecipModel", "Recip")
                         .WithMany("Categories")
@@ -315,8 +293,6 @@ namespace ms_recip.Migrations
 
             modelBuilder.Entity("ms_recip.Models.CategoryModel", b =>
                 {
-                    b.Navigation("Profils");
-
                     b.Navigation("Recips");
                 });
 

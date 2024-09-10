@@ -9,9 +9,11 @@ public record CategoryModel
     [Key]
     public Guid Id { get; set; }
     
-    public string Name { get; set; }
+    public required string Name { get; set; }
     
-    public bool Deleted { get; set; }
+    public bool Deleted { get; set; } = false;
     
-    public IEnumerable<RecipCategoryModel> Recips { get; set; }
+    public IEnumerable<RecipCategoryModel>? Recips { get; set; }
+    
+    public IEnumerable<ProfilCategoryModel>? Profils { get; set; }
 }

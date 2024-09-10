@@ -17,13 +17,13 @@ public record RecipModel
     
     public required int PersonNumber { get; set; }
     
-    public required DateTime CookingDuration { get; set; }
+    public required DateTime? CookingDuration { get; set; }
     
     public required bool Deleted { get; set; }
 
     public IEnumerable<RecipStepModel>? Steps { get; set; }
     
-    public required IEnumerable<RecipCategoryModel> Categories { get; set; }
+    public IEnumerable<RecipCategoryModel>? Categories { get; set; }
     
-    public required IEnumerable<IngredientQuantityModel> IngredientQuantities { get; set; }
+    public IEnumerable<IngredientQuantityModel>? IngredientQuantities { get; set; }
 }

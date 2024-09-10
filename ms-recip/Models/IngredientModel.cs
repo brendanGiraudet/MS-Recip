@@ -9,9 +9,9 @@ public record IngredientModel
     [Key]
     public Guid Id { get; set; }
     
-    public string Name { get; set; }
+    public required string Name { get; set; }
     
-    public string Image { get; set; }
+    public required string Image { get; set; }
     
-    public bool Deleted { get; set; }
+    public bool Deleted { get; set; } = false;
 }

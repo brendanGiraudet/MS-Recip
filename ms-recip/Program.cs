@@ -9,6 +9,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDatabaseContext(builder.Configuration);
 builder.Services.AddODataContext();
+builder.Services.AddCustomServices();
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 

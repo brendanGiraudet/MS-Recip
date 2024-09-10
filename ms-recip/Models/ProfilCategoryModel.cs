@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ms_recip.Models;
 
-[Table("RecipCategories")]
-[PrimaryKey(nameof(RecipId), nameof(CategoryId))]
-public record RecipCategoryModel
+[Table("ProfilCategories")]
+[PrimaryKey(nameof(ProfilId), nameof(CategoryId))]
+public record ProfilCategoryModel
 {
-    public Guid RecipId { get; set; }
-    [ForeignKey("RecipId")]
-    public RecipModel? Recip { get; set; }
+    public Guid ProfilId { get; set; }
+    [ForeignKey("ProfilId")]
+    public ProfilModel? Profil { get; set; }
 
     public Guid CategoryId { get; set; }
     [ForeignKey("CategoryId")]
