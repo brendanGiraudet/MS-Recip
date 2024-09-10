@@ -762,6 +762,195 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "RecipSteps",
+			"item": [
+				{
+					"name": "/odata/RecipSteps",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipSteps?$top=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipSteps"
+							],
+							"query": [
+								{
+									"key": "$top",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipSteps",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"{{$guid}}\",\r\n  \"label\": \"string\",\r\n  \"recipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n  \"recip\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/RecipSteps",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipSteps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipSteps(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipSteps",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@odata.context\": \"https://localhost:7011/odata/$metadata#RecipSteps/$entity\",\r\n    \"Id\": \"b46b62de-fba5-4588-8ae7-eb532a82e05f\",\r\n    \"Label\": \"patchstring\",\r\n    \"RecipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipSteps(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipSteps(b46b62de-fba5-4588-8ae7-eb532a82e05f)"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

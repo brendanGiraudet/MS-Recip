@@ -7,6 +7,7 @@ using ms_recip.Repository.CategoriesRepository;
 using ms_recip.Repository.IngredientsRepository;
 using ms_recip.Repository.ProfilsRepository;
 using ms_recip.Repository.RecipsRepository;
+using ms_recip.Repository.RecipStepsRepository;
 using ms_recip.Services.LoggerService;
 using System.Text.Json.Serialization;
 
@@ -29,6 +30,7 @@ public static class ServiceCollectionExtension
         modelBuilder.EntitySet<IngredientModel>(nameof(DatabaseContext.Ingredients));
         modelBuilder.EntitySet<CategoryModel>(nameof(DatabaseContext.Categories));
         modelBuilder.EntitySet<ProfilModel>(nameof(DatabaseContext.Profils));
+        modelBuilder.EntitySet<RecipStepModel>(nameof(DatabaseContext.RecipSteps));
 
         services.AddControllers()
             .AddOData(
@@ -53,5 +55,6 @@ public static class ServiceCollectionExtension
         services.AddTransient<ICategoriesRepository, CategoriesRepository>();
         services.AddTransient<IIngredientsRepository, IngredientsRepository>();
         services.AddTransient<IRecipsRepository, RecipsRepository>();
+        services.AddTransient<IRecipStepsRepository, RecipStepsRepository>();
     }
 }
