@@ -11,6 +11,7 @@ using ms_recip.Repositories.ProfilsRepository;
 using ms_recip.Repositories.RecipCategoriesRepository;
 using ms_recip.Repositories.RecipsRepository;
 using ms_recip.Repositories.RecipStepsRepository;
+using ms_recip.Repositories.UsersRepository;
 using ms_recip.Services.LoggerService;
 using System.Text.Json.Serialization;
 
@@ -34,6 +35,7 @@ public static class ServiceCollectionExtension
         modelBuilder.EntitySet<CategoryModel>(nameof(DatabaseContext.Categories));
         modelBuilder.EntitySet<ProfilModel>(nameof(DatabaseContext.Profils));
         modelBuilder.EntitySet<RecipStepModel>(nameof(DatabaseContext.RecipSteps));
+        modelBuilder.EntitySet<UserModel>(nameof(DatabaseContext.Users));
 
         services.AddControllers()
             .AddOData(
@@ -62,5 +64,6 @@ public static class ServiceCollectionExtension
         services.AddTransient<IIngredientQuantitiesRepository, IngredientQuantitiesRepository>();
         services.AddTransient<IRecipCategoriesRepository, RecipCategoriesRepository>();
         services.AddTransient<IProfilCategoriesRepository, ProfilCategoriesRepository>();
+        services.AddTransient<IUsersRepository, UsersRepository>();
     }
 }

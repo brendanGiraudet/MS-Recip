@@ -197,6 +197,195 @@
 			]
 		},
 		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/odata/Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Users?$top=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Users"
+							],
+							"query": [
+								{
+									"key": "$top",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"{{$guid}}\",\r\n  \"profilId\": \"7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Users(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Users('29568a71-f93f-406d-b57b-90dcf16206c0')",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Users('29568a71-f93f-406d-b57b-90dcf16206c0')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"@odata.context\": \"https://localhost:7011/odata/$metadata#Users/$entity\",\r\n    \"UserId\": \"29568a71-f93f-406d-b57b-90dcf16206c0\",\r\n    \"ProfilId\": \"7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd\",\r\n    \"Deleted\": false,\r\n    \"RecipCalendars\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/Users('29568a71-f93f-406d-b57b-90dcf16206c0')",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Users('29568a71-f93f-406d-b57b-90dcf16206c0')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/Users(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/Users('29568a71-f93f-406d-b57b-90dcf16206c0')",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"Users('29568a71-f93f-406d-b57b-90dcf16206c0')"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Categories",
 			"item": [
 				{
