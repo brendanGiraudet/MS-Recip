@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ms_recip.Models;
@@ -11,6 +12,7 @@ public record IngredientQuantityModel
 
     public required string MeasureUnit { get; set; }
 
+    [Key]
     public Guid RecipId { get; set; }
     [ForeignKey("RecipId")]
     public RecipModel? Recip { get; set; }

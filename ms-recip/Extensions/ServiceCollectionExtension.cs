@@ -4,6 +4,7 @@ using Microsoft.OData.ModelBuilder;
 using ms_recip.Data;
 using ms_recip.Models;
 using ms_recip.Repository.CategoriesRepository;
+using ms_recip.Repository.IngredientQuantitiesRepository;
 using ms_recip.Repository.IngredientsRepository;
 using ms_recip.Repository.ProfilsRepository;
 using ms_recip.Repository.RecipsRepository;
@@ -56,5 +57,6 @@ public static class ServiceCollectionExtension
         services.AddTransient<IIngredientsRepository, IngredientsRepository>();
         services.AddTransient<IRecipsRepository, RecipsRepository>();
         services.AddTransient<IRecipStepsRepository, RecipStepsRepository>();
+        services.AddTransient<IIngredientQuantitiesRepository, IngredientQuantitiesRepository>();
     }
 }
