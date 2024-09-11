@@ -4,12 +4,8 @@ using ms_recip.Repository.BaseRepository;
 
 namespace ms_recip.Repository.CategoriesRepository;
 
-public class CategoriesRepository : BaseRepository<CategoryModel>, ICategoriesRepository
+public class CategoriesRepository(
+    DatabaseContext databaseContext,
+    ILogger logger) : BaseRepository<CategoryModel>(databaseContext, logger, databaseContext.Categories), ICategoriesRepository
 {
-    public CategoriesRepository(
-        DatabaseContext databaseContext,
-        ILogger logger)
-        : base(databaseContext, logger, databaseContext.Categories)
-    {
-    }
 }

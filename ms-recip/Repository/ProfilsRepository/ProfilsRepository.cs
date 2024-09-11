@@ -4,12 +4,8 @@ using ms_recip.Repository.BaseRepository;
 
 namespace ms_recip.Repository.ProfilsRepository;
 
-public class ProfilsRepository : BaseRepository<ProfilModel>, IProfilsRepository
+public class ProfilsRepository(
+    DatabaseContext databaseContext,
+    ILogger logger) : BaseRepository<ProfilModel>(databaseContext, logger, databaseContext.Profils), IProfilsRepository
 {
-    public ProfilsRepository(
-        DatabaseContext databaseContext,
-        ILogger logger)
-        : base(databaseContext, logger, databaseContext.Profils)
-    {
-    }
 }

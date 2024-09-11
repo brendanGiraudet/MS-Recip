@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /ms-recip/Data/database.db-shm
 /ms-recip/Data/database.db-wal
+/ms-recip/Data/database.db

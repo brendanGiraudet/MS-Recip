@@ -4,12 +4,8 @@ using ms_recip.Repository.BaseRepository;
 
 namespace ms_recip.Repository.IngredientsRepository;
 
-public class IngredientsRepository : BaseRepository<IngredientModel>, IIngredientsRepository
+public class IngredientsRepository(
+    DatabaseContext databaseContext,
+    ILogger logger) : BaseRepository<IngredientModel>(databaseContext, logger, databaseContext.Ingredients), IIngredientsRepository
 {
-    public IngredientsRepository(
-        DatabaseContext databaseContext,
-        ILogger logger)
-        : base(databaseContext, logger, databaseContext.Ingredients)
-    {
-    }
 }

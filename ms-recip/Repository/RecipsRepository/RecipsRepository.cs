@@ -4,12 +4,8 @@ using ms_recip.Repository.BaseRepository;
 
 namespace ms_recip.Repository.RecipsRepository;
 
-public class RecipsRepository : BaseRepository<RecipModel>, IRecipsRepository
+public class RecipsRepository(
+    DatabaseContext databaseContext,
+    ILogger logger) : BaseRepository<RecipModel>(databaseContext, logger, databaseContext.Recips), IRecipsRepository
 {
-    public RecipsRepository(
-        DatabaseContext databaseContext,
-        ILogger logger)
-        : base(databaseContext, logger, databaseContext.Recips)
-    {
-    }
 }
