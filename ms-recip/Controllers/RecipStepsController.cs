@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using ms_recip.Models;
-using ms_recip.Repository.RecipStepsRepository;
+using ms_recip.Repositories.RecipStepsRepository;
 
 namespace ms_recip.Controllers;
 

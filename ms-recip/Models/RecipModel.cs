@@ -19,7 +19,7 @@ public record RecipModel
     
     public required DateTime? CookingDuration { get; set; }
     
-    public required bool Deleted { get; set; }
+    public bool Deleted { get; set; } = false;
 
     public IEnumerable<RecipStepModel>? Steps { get; set; }
     

@@ -1,7 +1,7 @@
 ﻿using ms_recip.Models;
 using System.Linq.Expressions;
 
-namespace ms_recip.Repository.BaseRepository;
+namespace ms_recip.Repositories.BaseRepository;
 
 public interface IBaseRepository<T>
 {

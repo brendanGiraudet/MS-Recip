@@ -951,6 +951,65 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "IngredientQuantities",
+			"item": [
+				{
+					"name": "IngredientQuantities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"quantity\": 10,\r\n        \"measureUnit\": \"unit\",\r\n        \"recipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n        \"recip\": null,\r\n        \"ingredientId\": \"b95e0239-8d06-4d21-9ad6-debac11ab0f7\", \r\n        \"ingredient\": null\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/IngredientQuantities/5cd0598c-52b6-4dd8-ae85-0b544d899455",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"IngredientQuantities",
+								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IngredientQuantities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/IngredientQuantities/5cd0598c-52b6-4dd8-ae85-0b544d899455",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"IngredientQuantities",
+								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

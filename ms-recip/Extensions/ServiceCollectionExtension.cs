@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OData.ModelBuilder;
 using ms_recip.Data;
 using ms_recip.Models;
-using ms_recip.Repository.CategoriesRepository;
-using ms_recip.Repository.IngredientQuantitiesRepository;
-using ms_recip.Repository.IngredientsRepository;
-using ms_recip.Repository.ProfilsRepository;
-using ms_recip.Repository.RecipsRepository;
-using ms_recip.Repository.RecipStepsRepository;
+using ms_recip.Repositories.CategoriesRepository;
+using ms_recip.Repositories.IngredientQuantitiesRepository;
+using ms_recip.Repositories.IngredientsRepository;
+using ms_recip.Repositories.ProfilsRepository;
+using ms_recip.Repositories.RecipsRepository;
+using ms_recip.Repositories.RecipStepsRepository;
 using ms_recip.Services.LoggerService;
 using System.Text.Json.Serialization;
 

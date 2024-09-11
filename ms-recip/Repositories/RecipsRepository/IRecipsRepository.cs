@@ -1,7 +1,7 @@
 ﻿using ms_recip.Models;
-using ms_recip.Repository.BaseRepository;
+using ms_recip.Repositories.BaseRepository;
 
-namespace ms_recip.Repository.RecipsRepository;
+namespace ms_recip.Repositories.RecipsRepository;
 
 public interface IRecipsRepository : IBaseRepository<RecipModel>
 {

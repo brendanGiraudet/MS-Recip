@@ -1,7 +1,7 @@
 ﻿using ms_recip.Models;
-using ms_recip.Repository.SaveBaseRepository;
+using ms_recip.Repositories.SaveBaseRepository;
 
-namespace ms_recip.Repository.IngredientQuantitiesRepository;
+namespace ms_recip.Repositories.IngredientQuantitiesRepository;
 
 public interface IIngredientQuantitiesRepository : ISaveBaseRepository<IngredientQuantityModel>
 {

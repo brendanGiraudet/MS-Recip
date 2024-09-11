@@ -4,7 +4,7 @@ using ms_recip.EqualityComparer;
 using ms_recip.Models;
 using System.Linq.Expressions;
 
-namespace ms_recip.Repository.SaveBaseRepository;
+namespace ms_recip.Repositories.SaveBaseRepository;
 
 public class SaveBaseRepository<T>(
     DatabaseContext databaseContext,

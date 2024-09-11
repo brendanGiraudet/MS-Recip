@@ -3,20 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ms-recip", "ms-recip\ms-recip.csproj", "{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ms-recip", "ms-recip\ms-recip.csproj", "{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ms-recip-tests", "ms-recip-tests\ms-recip-tests.csproj", "{156E68BC-758D-40C9-B0AD-860B622C9E69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A9B0D9C-6598-45C7-AF86-81AEC178C51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156E68BC-758D-40C9-B0AD-860B622C9E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156E68BC-758D-40C9-B0AD-860B622C9E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156E68BC-758D-40C9-B0AD-860B622C9E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156E68BC-758D-40C9-B0AD-860B622C9E69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ms_recip.Models;
-using ms_recip.Repository.IngredientQuantitiesRepository;
+using ms_recip.Repositories.IngredientQuantitiesRepository;
 
 namespace ms_recip.Controllers;
 
