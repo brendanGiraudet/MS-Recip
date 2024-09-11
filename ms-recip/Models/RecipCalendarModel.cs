@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ms_recip.Models;
 
 [Table("RecipCalendars")]
-[PrimaryKey(nameof(UserId), nameof(RecipId), nameof(Date))]
 public class RecipCalendarModel
 {
+    [Key]
+    public Guid Id { get; set; }
+    
     public required string UserId { get; set; }
     [ForeignKey("UserId")]
     public UserModel? User { get; set; }

@@ -76,6 +76,20 @@ public class BaseRepository<T>(
 
             if (actualIngredient == null) return MethodResult<T>.CreateSuccessResult(model);
 
+            return await UpdateItemAsync(model);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+
+            return MethodResult<T>.CreateErrorResult(ex.Message);
+        }
+    }
+    
+    public async Task<MethodResult<T>> UpdateItemAsync(T model)
+    {
+        try
+        {
             _dbSet.Update(model);
 
             await _databaseContext.SaveChangesAsync();
@@ -98,7 +112,21 @@ public class BaseRepository<T>(
 
             if (actualIngredient == null) return MethodResult<bool>.CreateSuccessResult(false);
 
-            _dbSet.Remove(actualIngredient);
+           return await DeleteItemAsync(actualIngredient);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex.Message, ex);
+
+            return MethodResult<bool>.CreateErrorResult(ex.Message);
+        }
+    }
+    
+    public async Task<MethodResult<bool>> DeleteItemAsync(T model)
+    {
+        try
+        {
+            _dbSet.Remove(model);
 
             await _databaseContext.SaveChangesAsync();
 

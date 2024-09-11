@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ms_recip.Data;
 
@@ -10,9 +11,11 @@ using ms_recip.Data;
 namespace ms_recip.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240911103551_UpdateRecipCalendarTable")]
+    partial class UpdateRecipCalendarTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -32,7 +35,7 @@ namespace ms_recip.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ms_recip.Models.IngredientModel", b =>
@@ -54,7 +57,7 @@ namespace ms_recip.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients", (string)null);
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("ms_recip.Models.IngredientQuantityModel", b =>
@@ -76,7 +79,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("IngredientQuantities", (string)null);
+                    b.ToTable("IngredientQuantities");
                 });
 
             modelBuilder.Entity("ms_recip.Models.ProfilCategoryModel", b =>
@@ -91,7 +94,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProfilCategories", (string)null);
+                    b.ToTable("ProfilCategories");
                 });
 
             modelBuilder.Entity("ms_recip.Models.ProfilModel", b =>
@@ -109,7 +112,7 @@ namespace ms_recip.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profils", (string)null);
+                    b.ToTable("Profils");
                 });
 
             modelBuilder.Entity("ms_recip.Models.RecipCalendarModel", b =>
@@ -134,7 +137,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RecipCalendars", (string)null);
+                    b.ToTable("RecipCalendars");
                 });
 
             modelBuilder.Entity("ms_recip.Models.RecipCategoryModel", b =>
@@ -149,7 +152,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("RecipCategories", (string)null);
+                    b.ToTable("RecipCategories");
                 });
 
             modelBuilder.Entity("ms_recip.Models.RecipModel", b =>
@@ -181,7 +184,7 @@ namespace ms_recip.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recips", (string)null);
+                    b.ToTable("Recips");
                 });
 
             modelBuilder.Entity("ms_recip.Models.RecipStepModel", b =>
@@ -201,7 +204,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("RecipId");
 
-                    b.ToTable("RecipSteps", (string)null);
+                    b.ToTable("RecipSteps");
                 });
 
             modelBuilder.Entity("ms_recip.Models.UserModel", b =>
@@ -219,7 +222,7 @@ namespace ms_recip.Migrations
 
                     b.HasIndex("ProfilId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ms_recip.Models.IngredientQuantityModel", b =>

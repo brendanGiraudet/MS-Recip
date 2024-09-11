@@ -8,7 +8,7 @@ public record IngredientModel
 {
     [Key]
     public Guid Id { get; set; }
-    
+
     public required string Name { get; set; }
     
     public required string Image { get; set; }

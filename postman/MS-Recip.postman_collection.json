@@ -197,6 +197,195 @@
 			]
 		},
 		{
+			"name": "RecipCalendars",
+			"item": [
+				{
+					"name": "/odata/RecipCalendars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipCalendars?$top=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCalendars"
+							],
+							"query": [
+								{
+									"key": "$top",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipCalendars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"UserId\": \"33fc6cba-3a93-479d-a848-e0b3d171f804\",\r\n    \"RecipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n    \"Date\": \"2024-09-11T10:23:58.546+02:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/RecipCalendars",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCalendars"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipCalendars(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipCalendars(c11761a7-061b-431a-ac15-0160104000bf)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCalendars(c11761a7-061b-431a-ac15-0160104000bf)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipCalendars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"c11761a7-061b-431a-ac15-0160104000bf\",\r\n    \"UserId\": \"33fc6cba-3a93-479d-a848-e0b3d171f804\",\r\n    \"RecipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n    \"Date\": \"2024-09-11T10:00:58.546+02:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/RecipCalendars(b95e0239-8d06-4d21-9ad6-debac11ab0f7)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCalendars(b95e0239-8d06-4d21-9ad6-debac11ab0f7)"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipCalendars(id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/odata/RecipCalendars(c11761a7-061b-431a-ac15-0160104000bf)",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCalendars(c11761a7-061b-431a-ac15-0160104000bf)"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Users",
 			"item": [
 				{

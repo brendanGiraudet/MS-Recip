@@ -7,8 +7,8 @@ namespace ms_recip.Models;
 public record RecipStepModel
 {
     [Key]
-    public required Guid Id { get; set; }
-    
+    public Guid Id { get; set; }
+
     public required string Label { get; set; }
     
     public required Guid RecipId { get; set; }

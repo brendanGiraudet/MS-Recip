@@ -8,6 +8,7 @@ using ms_recip.Repositories.IngredientQuantitiesRepository;
 using ms_recip.Repositories.IngredientsRepository;
 using ms_recip.Repositories.ProfilCategoriesRepository;
 using ms_recip.Repositories.ProfilsRepository;
+using ms_recip.Repositories.RecipCalendarsRepository;
 using ms_recip.Repositories.RecipCategoriesRepository;
 using ms_recip.Repositories.RecipsRepository;
 using ms_recip.Repositories.RecipStepsRepository;
@@ -36,6 +37,7 @@ public static class ServiceCollectionExtension
         modelBuilder.EntitySet<ProfilModel>(nameof(DatabaseContext.Profils));
         modelBuilder.EntitySet<RecipStepModel>(nameof(DatabaseContext.RecipSteps));
         modelBuilder.EntitySet<UserModel>(nameof(DatabaseContext.Users));
+        modelBuilder.EntitySet<RecipCalendarModel>(nameof(DatabaseContext.RecipCalendars));
 
         services.AddControllers()
             .AddOData(
@@ -65,5 +67,6 @@ public static class ServiceCollectionExtension
         services.AddTransient<IRecipCategoriesRepository, RecipCategoriesRepository>();
         services.AddTransient<IProfilCategoriesRepository, ProfilCategoriesRepository>();
         services.AddTransient<IUsersRepository, UsersRepository>();
+        services.AddTransient<IRecipCalendarsRepository, RecipCalendarsRepository>();
     }
 }
