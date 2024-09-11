@@ -1010,6 +1010,65 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "RecipCategories",
+			"item": [
+				{
+					"name": "IngredientQuantities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"recipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n        \"recip\": null,\r\n        \"categoryId\": \"5978857b-eed5-4129-aae1-2b7f7f8e779e\", \r\n        \"category\": null\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/RecipCategories/5cd0598c-52b6-4dd8-ae85-0b544d899455",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"RecipCategories",
+								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IngredientQuantities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/RecipCategories/5cd0598c-52b6-4dd8-ae85-0b544d899455",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"RecipCategories",
+								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

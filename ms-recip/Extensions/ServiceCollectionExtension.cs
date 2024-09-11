@@ -7,6 +7,7 @@ using ms_recip.Repositories.CategoriesRepository;
 using ms_recip.Repositories.IngredientQuantitiesRepository;
 using ms_recip.Repositories.IngredientsRepository;
 using ms_recip.Repositories.ProfilsRepository;
+using ms_recip.Repositories.RecipCategoriesRepository;
 using ms_recip.Repositories.RecipsRepository;
 using ms_recip.Repositories.RecipStepsRepository;
 using ms_recip.Services.LoggerService;
@@ -58,5 +59,6 @@ public static class ServiceCollectionExtension
         services.AddTransient<IRecipsRepository, RecipsRepository>();
         services.AddTransient<IRecipStepsRepository, RecipStepsRepository>();
         services.AddTransient<IIngredientQuantitiesRepository, IngredientQuantitiesRepository>();
+        services.AddTransient<IRecipCategoriesRepository, RecipCategoriesRepository>();
     }
 }
