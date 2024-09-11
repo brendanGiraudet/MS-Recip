@@ -10,12 +10,18 @@ FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG configuration=Release
 WORKDIR /src
 COPY . .
-WORKDIR /src/ms-configuration
+WORKDIR /src/ms-recip
 RUN dotnet restore
 RUN dotnet build -c $configuration -o /app/build
 
-#WORKDIR /src/test-folder
-#RUN dotnet test --no-restore --verbosity normal
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS test
+ARG configuration=Release
+WORKDIR /src
+COPY . .
+WORKDIR /src/ms-recip-tests
+RUN dotnet restore
+RUN dotnet build -c $configuration -o /app/test
+RUN dotnet test --no-restore --verbosity normal
 
 FROM build AS publish
 ARG configuration=Release
