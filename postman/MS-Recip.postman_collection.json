@@ -1015,7 +1015,7 @@
 			"name": "RecipCategories",
 			"item": [
 				{
-					"name": "IngredientQuantities",
+					"name": "RecipCategories",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -1042,7 +1042,7 @@
 					"response": []
 				},
 				{
-					"name": "IngredientQuantities",
+					"name": "RecipCategories",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -1063,6 +1063,65 @@
 							"path": [
 								"RecipCategories",
 								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProfilCategories",
+			"item": [
+				{
+					"name": "ProfilCategories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"profilId\": \"7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd\",\r\n        \"profil\": null,\r\n        \"categoryId\": \"5978857b-eed5-4129-aae1-2b7f7f8e779e\", \r\n        \"category\": null\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ProfilCategories/7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ProfilCategories",
+								"7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProfilCategories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ProfilCategories/7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ProfilCategories",
+								"7471f9ce-0b59-40d1-9e59-2f6d0afc6cfd"
 							]
 						}
 					},
