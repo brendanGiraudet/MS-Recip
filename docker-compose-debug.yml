@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   ms-recip:
-    image: bakayarusama/ms-recip:1.0.0
+    image: bakayarusama/ms-recip:1.0.1
     container_name: ms-recip
     
     build:
@@ -17,6 +17,10 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ApplicationVersion: 1.0.0
       ConnectionStrings__Database: "Data Source=/app/Data/database.db"
+
+      MSConfigurationSettings__OdataBaseUrl: "https://ms-configuration-local.brendan-giraudet.com/odata"
+      
+      RabbitMqQueueName: "ms-recip"
 
     volumes:
       - C:\Users\brend\Source\Repos\brendanGiraudet\MS-Recip\ms-recip\Data:/app/Data
