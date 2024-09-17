@@ -1,4 +1,5 @@
-﻿using ms_recip.Services.ConfigurationService;
+﻿using ms_recip.Models;
+using ms_recip.Services.ConfigurationService;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -30,19 +31,34 @@ public class RabbitMqProducerService : IRabbitMqProducerService, IDisposable
 
     public void PublishMessage<T>(T message, string exchangeName, string routingKey)
     {
-        _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Topic);
+        try
+        {
+            _channel.ExchangeDeclare(exchange: exchangeName, durable: true, type: ExchangeType.Topic);
+  
+            var rabbitMqMessageBase = new RabbitMqMessageBase<T>()
+            {
+                ApplicationName = "ms-recip",
+                Payload = message,
+                RoutingKey = routingKey,
+                Timestamp = DateTime.UtcNow
+            };
 
-        var jsonMessage = JsonSerializer.Serialize(message);
-        var body = Encoding.UTF8.GetBytes(jsonMessage);
+            var jsonMessage = JsonSerializer.Serialize(rabbitMqMessageBase);
+            var body = Encoding.UTF8.GetBytes(jsonMessage);
 
-        _channel.BasicPublish(
-            exchange: exchangeName,
-            routingKey: routingKey,
-            basicProperties: null,
-            body: body
-        );
+            _channel.BasicPublish(
+                exchange: exchangeName,
+                routingKey: routingKey,
+                basicProperties: null,
+                body: body
+            );  
 
-        Console.WriteLine($"Message published to exchange {exchangeName} with routing key {routingKey}: {jsonMessage}");
+            Console.WriteLine($"Message published to exchange {exchangeName} with routing key {routingKey}: {jsonMessage}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("send message proglem");
+        }
     }
 
     public void Dispose()

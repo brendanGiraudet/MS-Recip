@@ -93,18 +93,18 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
     {
         try
         {
-            var recip = JsonSerializer.Deserialize<RecipModel>(message);
-            if (recip != null)
+            var deserializedMessage = JsonSerializer.Deserialize<RabbitMqMessageBase<RecipModel>>(message);
+            if (deserializedMessage != null)
             {
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var recipsRepository = scope.ServiceProvider.GetRequiredService<IRecipsRepository>();
 
-                    var result = await recipsRepository.CreateItemAsync(recip);
+                    var result = await recipsRepository.CreateItemAsync(deserializedMessage.Payload);
 
                     if (result.IsSuccess)
                     {
-                        _rabbitMqProducerService.PublishMessage(recip, "ms-recip", "CreatedRecip");
+                        _rabbitMqProducerService.PublishMessage(deserializedMessage.Payload, "recip", "CreateRecipResult");
                     }
                 }
 
