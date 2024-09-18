@@ -54,9 +54,12 @@ public class BaseRepository<T>(
     {
         try
         {
-            _dbSet.Add(model);
+            if (!_dbSet.Contains(model))
+            {
+                _dbSet.Add(model);
 
-            await _databaseContext.SaveChangesAsync();
+                await _databaseContext.SaveChangesAsync();
+            }
 
             return MethodResult<T>.CreateSuccessResult(model);
         }

@@ -1,4 +1,5 @@
 ﻿using Ms_configuration.Models;
+using ms_recip.Constants;
 using ms_recip.Models;
 using ms_recip.Repositories.RecipsRepository;
 using ms_recip.Services.ConfigurationService;
@@ -65,57 +66,84 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
     private void ProcessMessages(object state)
     {
         var consumer = new EventingBasicConsumer(_channel);
-        consumer.Received += async (model, ea) =>
+        consumer.Received += async (model, basicDeliverEventArgs) =>
         {
-            var body = ea.Body.ToArray();
+            var body = basicDeliverEventArgs.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
 
             Console.WriteLine($"Received message from {_queueName}: {message}");
 
-            switch (ea.RoutingKey)
-            {
-                case "CreateRecip":
-                    {
-                        await CreateRecipAsync(message);
-                    }
-                    break;
-                default:
-
-                    break;
-            }
-
+            await HandleRecipAsync(message, basicDeliverEventArgs.RoutingKey);
         };
 
         _channel.BasicConsume(queue: _queueName, autoAck: true, consumer: consumer);
     }
 
-    private async Task CreateRecipAsync(string message)
+    private async Task HandleRecipAsync(string message, string routingKey)
     {
         try
         {
             var deserializedMessage = JsonSerializer.Deserialize<RabbitMqMessageBase<RecipModel>>(message);
             if (deserializedMessage != null)
             {
-                using (var scope = _serviceProvider.CreateScope())
+                using var scope = _serviceProvider.CreateScope();
+
+                var recipsRepository = scope.ServiceProvider.GetRequiredService<IRecipsRepository>();
+
+                MethodResult<RecipModel>? result;
+
+                var routingKeyResult = string.Empty;
+
+                switch (routingKey)
                 {
-                    var recipsRepository = scope.ServiceProvider.GetRequiredService<IRecipsRepository>();
-
-                    var result = await recipsRepository.CreateItemAsync(deserializedMessage.Payload);
-
-                    if (result.IsSuccess)
-                    {
-                        var routingKey = "CreateRecipResult";
-                        var rabbitMqMessageBase = new RabbitMqMessageBase<RecipModel>()
+                    case RabbitmqConstants.CreateRecipRoutingKey:
                         {
-                            ApplicationName = "ms-recip",
-                            Payload = deserializedMessage.Payload,
-                            RoutingKey = routingKey,
-                            Timestamp = DateTime.UtcNow,
-                            UserId = deserializedMessage.UserId
-                        };
+                            result = await recipsRepository.CreateItemAsync(deserializedMessage.Payload);
 
-                        _rabbitMqProducerService.PublishMessage(rabbitMqMessageBase, "recip", routingKey);
-                    }
+                            routingKeyResult = RabbitmqConstants.CreateRecipResultRoutingKey;
+                        }
+                        break;
+
+                    case RabbitmqConstants.UpdateRecipRoutingKey:
+                        {
+                            result = await recipsRepository.UpdateItemAsync(deserializedMessage.Payload);
+
+                            routingKeyResult = RabbitmqConstants.UpdateRecipResultRoutingKey;
+                        }
+                        break;
+
+                    case RabbitmqConstants.DeleteRecipRoutingKey:
+                        {
+                            var deleteResult = await recipsRepository.DeleteItemAsync(deserializedMessage.Payload);
+                            result = new MethodResult<RecipModel>
+                            {
+                                IsSuccess = deleteResult.IsSuccess,
+                                Message = deleteResult.Message,
+                                Value = deserializedMessage.Payload
+                            };
+
+                            routingKeyResult = RabbitmqConstants.DeleteRecipResultRoutingKey;
+                        }
+                        break;
+
+                    default:
+                        result = MethodResult<RecipModel>.CreateErrorResult("problem");
+
+                        break;
+                }
+
+                if (result.IsSuccess)
+                {
+                    var rabbitMqMessageBase = new RabbitMqMessageBase<RecipModel>()
+                    {
+                        ApplicationName = RabbitmqConstants.ApplicationName,
+                        Payload = deserializedMessage.Payload,
+                        RoutingKey = routingKeyResult,
+                        Timestamp = DateTime.UtcNow,
+                        UserId = deserializedMessage.UserId
+                    };
+
+                    _rabbitMqProducerService.PublishMessage(rabbitMqMessageBase, RabbitmqConstants.RecipExchangeName, routingKeyResult);
                 }
 
             }
