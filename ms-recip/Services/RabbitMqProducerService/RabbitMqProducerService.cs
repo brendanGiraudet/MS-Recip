@@ -29,21 +29,13 @@ public class RabbitMqProducerService : IRabbitMqProducerService, IDisposable
         _channel = _connection.CreateModel();
     }
 
-    public void PublishMessage<T>(T message, string exchangeName, string routingKey)
+    public void PublishMessage<T>(RabbitMqMessageBase<T> message, string exchangeName, string routingKey)
     {
         try
         {
             _channel.ExchangeDeclare(exchange: exchangeName, durable: true, type: ExchangeType.Topic);
-  
-            var rabbitMqMessageBase = new RabbitMqMessageBase<T>()
-            {
-                ApplicationName = "ms-recip",
-                Payload = message,
-                RoutingKey = routingKey,
-                Timestamp = DateTime.UtcNow
-            };
 
-            var jsonMessage = JsonSerializer.Serialize(rabbitMqMessageBase);
+            var jsonMessage = JsonSerializer.Serialize(message);
             var body = Encoding.UTF8.GetBytes(jsonMessage);
 
             _channel.BasicPublish(

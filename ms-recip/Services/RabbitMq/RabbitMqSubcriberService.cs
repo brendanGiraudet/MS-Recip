@@ -104,7 +104,17 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
 
                     if (result.IsSuccess)
                     {
-                        _rabbitMqProducerService.PublishMessage(deserializedMessage.Payload, "recip", "CreateRecipResult");
+                        var routingKey = "CreateRecipResult";
+                        var rabbitMqMessageBase = new RabbitMqMessageBase<RecipModel>()
+                        {
+                            ApplicationName = "ms-recip",
+                            Payload = deserializedMessage.Payload,
+                            RoutingKey = routingKey,
+                            Timestamp = DateTime.UtcNow,
+                            UserId = deserializedMessage.UserId
+                        };
+
+                        _rabbitMqProducerService.PublishMessage(rabbitMqMessageBase, "recip", routingKey);
                     }
                 }
 

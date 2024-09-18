@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   ms-recip:
-    image: bakayarusama/ms-recip:1.0.2
+    image: bakayarusama/ms-recip:1.0.3
     container_name: ms-recip
     
     build:
