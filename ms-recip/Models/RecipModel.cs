@@ -13,6 +13,8 @@ public record RecipModel
     
     public required string Image { get; set; }
     
+    public required string AuthorId { get; set; }
+    
     public required string Authorname { get; set; }
     
     public required int PersonNumber { get; set; }
