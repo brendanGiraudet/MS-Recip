@@ -136,7 +136,7 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
                 {
                     var rabbitMqMessageBase = new RabbitMqMessageBase<RecipModel>()
                     {
-                        ApplicationName = RabbitmqConstants.ApplicationName,
+                        ApplicationName = deserializedMessage.ApplicationName,
                         Payload = deserializedMessage.Payload,
                         RoutingKey = routingKeyResult,
                         Timestamp = DateTime.UtcNow,
