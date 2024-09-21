@@ -1,6 +1,7 @@
 ﻿using Ms_configuration.Models;
 using ms_recip.Constants;
 using ms_recip.Models;
+using ms_recip.Repositories.IngredientsRepository;
 using ms_recip.Repositories.RecipsRepository;
 using ms_recip.Services.ConfigurationService;
 using ms_recip.Services.RabbitMqProducerService;
@@ -73,11 +74,29 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
 
             Console.WriteLine($"Received message from {_queueName}: {message}");
 
-            await HandleRecipAsync(message, basicDeliverEventArgs.RoutingKey);
+            if(RecipActions.Contains(basicDeliverEventArgs.RoutingKey))
+                await HandleRecipAsync(message, basicDeliverEventArgs.RoutingKey);
+            
+            if(IngredientActions.Contains(basicDeliverEventArgs.RoutingKey))
+                await HandleIngredientAsync(message, basicDeliverEventArgs.RoutingKey);
         };
 
         _channel.BasicConsume(queue: _queueName, autoAck: true, consumer: consumer);
     }
+
+    private string[] RecipActions =
+        {
+            RabbitmqConstants.CreateRecipRoutingKey,
+            RabbitmqConstants.UpdateRecipRoutingKey,
+            RabbitmqConstants.DeleteRecipRoutingKey
+        };
+    
+    private string[] IngredientActions =
+        {
+            RabbitmqConstants.CreateIngredientRoutingKey,
+            RabbitmqConstants.UpdateIngredientRoutingKey,
+            RabbitmqConstants.DeleteIngredientRoutingKey
+        };
 
     private async Task HandleRecipAsync(string message, string routingKey)
     {
@@ -135,6 +154,83 @@ public class RabbitMqSubscriberService : IHostedService, IDisposable
                 if (result.IsSuccess)
                 {
                     var rabbitMqMessageBase = new RabbitMqMessageBase<RecipModel>()
+                    {
+                        ApplicationName = deserializedMessage.ApplicationName,
+                        Payload = deserializedMessage.Payload,
+                        RoutingKey = routingKeyResult,
+                        Timestamp = DateTime.UtcNow,
+                        UserId = deserializedMessage.UserId
+                    };
+
+                    _rabbitMqProducerService.PublishMessage(rabbitMqMessageBase, RabbitmqConstants.RecipExchangeName, routingKeyResult);
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors du traitement du message: {ex.Message}");
+        }
+    }
+
+    private async Task HandleIngredientAsync(string message, string routingKey)
+    {
+        try
+        {
+            var deserializedMessage = JsonSerializer.Deserialize<RabbitMqMessageBase<IngredientModel>>(message);
+
+            if (deserializedMessage != null)
+            {
+                using var scope = _serviceProvider.CreateScope();
+
+                var repository = scope.ServiceProvider.GetRequiredService<IIngredientsRepository>();
+
+                MethodResult<IngredientModel>? result;
+
+                var routingKeyResult = string.Empty;
+
+                switch (routingKey)
+                {
+                    case RabbitmqConstants.CreateIngredientRoutingKey:
+                        {
+                            result = await repository.CreateItemAsync(deserializedMessage.Payload);
+
+                            routingKeyResult = RabbitmqConstants.CreateIngredientResultRoutingKey;
+                        }
+                        break;
+
+                    case RabbitmqConstants.UpdateIngredientRoutingKey:
+                        {
+                            result = await repository.UpdateItemAsync(deserializedMessage.Payload);
+
+                            routingKeyResult = RabbitmqConstants.UpdateIngredientResultRoutingKey;
+                        }
+                        break;
+
+                    case RabbitmqConstants.DeleteIngredientRoutingKey:
+                        {
+                            var deleteResult = await repository.DeleteItemAsync(deserializedMessage.Payload);
+
+                            result = new MethodResult<IngredientModel>
+                            {
+                                IsSuccess = deleteResult.IsSuccess,
+                                Message = deleteResult.Message,
+                                Value = deserializedMessage.Payload
+                            };
+
+                            routingKeyResult = RabbitmqConstants.DeleteRecipResultRoutingKey;
+                        }
+                        break;
+
+                    default:
+                        result = MethodResult<IngredientModel>.CreateErrorResult("problem");
+
+                        break;
+                }
+
+                if (result.IsSuccess)
+                {
+                    var rabbitMqMessageBase = new RabbitMqMessageBase<IngredientModel>()
                     {
                         ApplicationName = deserializedMessage.ApplicationName,
                         Payload = deserializedMessage.Payload,

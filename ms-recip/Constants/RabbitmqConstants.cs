@@ -2,6 +2,11 @@
 
 public static class RabbitmqConstants
 {
+    public const string RecipExchangeName = "recip";
+
+    public const string ApplicationName = "ms-recip";
+
+    // RECIP
     public const string CreateRecipRoutingKey = "CreateRecip";
     public const string CreateRecipResultRoutingKey = "CreateRecipResult";
     
@@ -10,10 +15,18 @@ public static class RabbitmqConstants
     
     public const string DeleteRecipRoutingKey = "DeleteRecip";
     public const string DeleteRecipResultRoutingKey = "DeleteRecipResult";
-
-    public const string RecipExchangeName = "recip";
     
-    public const string ApplicationName = "ms-recip";
+    // INGREDIENT
+    public const string CreateIngredientRoutingKey = "CreateIngredient";
+    public const string CreateIngredientResultRoutingKey = "CreateIngredientResult";
+    
+    public const string UpdateIngredientRoutingKey = "UpdateIngredient";
+    public const string UpdateIngredientResultRoutingKey = "UpdateIngredientResult";
+    
+    public const string DeleteIngredientRoutingKey = "DeleteIngredient";
+    public const string DeleteIngredientResultRoutingKey = "DeleteIngredientResult";
+    
+    
 
 
 }
