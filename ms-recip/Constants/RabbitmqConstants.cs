@@ -35,4 +35,14 @@ public static class RabbitmqConstants
     
     public const string DeleteCategoryRoutingKey = "DeleteCategory";
     public const string DeleteCategoryResultRoutingKey = "DeleteCategoryResult";
+    
+    // PROFIL
+    public const string CreateProfilRoutingKey = "CreateProfil";
+    public const string CreateProfilResultRoutingKey = "CreateProfilResult";
+    
+    public const string UpdateProfilRoutingKey = "UpdateProfil";
+    public const string UpdateProfilResultRoutingKey = "UpdateProfilResult";
+    
+    public const string DeleteProfilRoutingKey = "DeleteProfil";
+    public const string DeleteProfilResultRoutingKey = "DeleteProfilResult";
 }
