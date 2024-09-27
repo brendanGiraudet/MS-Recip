@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ms_recip.Data;
 using ms_recip.Models;
+using ms_recip.Repositories.GetBaseRepository;
 using System.Linq.Expressions;
 
 namespace ms_recip.Repositories.BaseRepository;
@@ -9,45 +10,9 @@ public class BaseRepository<T>(
     DatabaseContext databaseContext,
     ILogger logger,
     DbSet<T> dbSet) 
-    : IBaseRepository<T> where T : class
+    : GetBaseRepository<T>(logger, dbSet), IBaseRepository<T> where T : class
 {
     protected readonly DatabaseContext _databaseContext = databaseContext;
-    protected readonly ILogger _logger = logger;
-    protected readonly DbSet<T> _dbSet = dbSet;
-
-    /// <inheritdoc/>
-    public MethodResult<IQueryable<T>> GetItems()
-    {
-        try
-        {
-            var items = _dbSet.AsQueryable();
-
-            return MethodResult<IQueryable<T>>.CreateSuccessResult(items);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message, ex);
-
-            return MethodResult<IQueryable<T>>.CreateErrorResult(ex.Message);
-        }
-    }
-
-    /// <inheritdoc/>
-    public async Task<MethodResult<T>> GetItemAsync(Expression<Func<T,bool>> filterExpression)
-    {
-        try
-        {
-            var item = await _dbSet.FirstOrDefaultAsync(filterExpression);
-
-            return MethodResult<T>.CreateSuccessResult(item);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message, ex);
-
-            return MethodResult<T>.CreateErrorResult(ex.Message);
-        }
-    }
 
     /// <inheritdoc/>
     public async Task<MethodResult<T>> CreateItemAsync(T model)

@@ -1,23 +1,11 @@
 ﻿using ms_recip.Models;
+using ms_recip.Repositories.GetBaseRepository;
 using System.Linq.Expressions;
 
 namespace ms_recip.Repositories.BaseRepository;
 
-public interface IBaseRepository<T>
+public interface IBaseRepository<T> : IGetBaseRepository<T>
 {
-    /// <summary>
-    /// Get entire items
-    /// </summary>
-    /// <returns></returns>
-    MethodResult<IQueryable<T>> GetItems();
-
-    /// <summary>
-    /// Get only one Item by filter expression
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    Task<MethodResult<T>> GetItemAsync(Expression<Func<T,bool>> filterExpression);
-
     /// <summary>
     /// Create a Item
     /// </summary>

@@ -1,9 +1,10 @@
 ﻿using ms_recip.Models;
+using ms_recip.Repositories.GetBaseRepository;
 using System.Linq.Expressions;
 
 namespace ms_recip.Repositories.SaveBaseRepository;
 
-public interface ISaveBaseRepository<T>
+public interface ISaveBaseRepository<T> : IGetBaseRepository<T>
 {
     /// <summary>
     /// Save items is remove and add items if necessary

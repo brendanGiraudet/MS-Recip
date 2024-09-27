@@ -2,6 +2,7 @@
 using ms_recip.Data;
 using ms_recip.EqualityComparer;
 using ms_recip.Models;
+using ms_recip.Repositories.GetBaseRepository;
 using System.Linq.Expressions;
 
 namespace ms_recip.Repositories.SaveBaseRepository;
@@ -9,11 +10,10 @@ namespace ms_recip.Repositories.SaveBaseRepository;
 public class SaveBaseRepository<T>(
     DatabaseContext databaseContext,
     ILogger logger,
-    DbSet<T> dbSet) : ISaveBaseRepository<T> where T : class
+    DbSet<T> dbSet) :
+    GetBaseRepository<T>(logger, dbSet), ISaveBaseRepository<T> where T : class
 {
     protected readonly DatabaseContext _databaseContext = databaseContext;
-    protected readonly ILogger _logger = logger;
-    protected readonly DbSet<T> _dbSet = dbSet;
 
     /// <inheritdoc/>
     public async Task<MethodResult<IEnumerable<T>>> SaveItemsAsync(IEnumerable<T> expectedItems, Expression<Func<T, bool>> globalFilterExpression)

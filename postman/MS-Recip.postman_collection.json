@@ -1399,7 +1399,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"recipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n        \"recip\": null,\r\n        \"categoryId\": \"5978857b-eed5-4129-aae1-2b7f7f8e779e\", \r\n        \"category\": null\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"recipId\": \"b7022d96-4214-494f-be37-d7bc7134ee45\",\r\n        \"recip\": null,\r\n        \"categoryId\": \"a54d6635-d675-4d83-ac6b-82d37f4b9972\", \r\n        \"category\": null\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1414,6 +1414,42 @@
 							"path": [
 								"RecipCategories",
 								"5cd0598c-52b6-4dd8-ae85-0b544d899455"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odata/RecipCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"recipId\": \"5cd0598c-52b6-4dd8-ae85-0b544d899455\",\r\n        \"recip\": null,\r\n        \"categoryId\": \"5978857b-eed5-4129-aae1-2b7f7f8e779e\", \r\n        \"category\": null\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/odata/RecipCategories?$filter=RecipId eq b7022d96-4214-494f-be37-d7bc7134ee45",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"odata",
+								"RecipCategories"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "RecipId eq b7022d96-4214-494f-be37-d7bc7134ee45"
+								}
 							]
 						}
 					},

@@ -42,6 +42,7 @@ public static class ServiceCollectionExtension
         modelBuilder.EntitySet<RecipStepModel>(nameof(DatabaseContext.RecipSteps));
         modelBuilder.EntitySet<UserModel>(nameof(DatabaseContext.Users));
         modelBuilder.EntitySet<RecipCalendarModel>(nameof(DatabaseContext.RecipCalendars));
+        modelBuilder.EntitySet<RecipCategoryModel>(nameof(DatabaseContext.RecipCategories));
 
         services.AddControllers()
             .AddOData(
