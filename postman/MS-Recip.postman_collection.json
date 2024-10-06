@@ -1014,7 +1014,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"{{$guid}}\",\r\n  \"name\": \"string\",\r\n  \"image\": \"string\",\r\n  \"authorId\": \"string\",\r\n  \"authorname\": \"string\",\r\n  \"personNumber\": 0,\r\n  \"cookingDuration\": \"2024-09-10T15:52:12.337Z\",\r\n  \"deleted\": true,\r\n  \"steps\": [],\r\n  \"categories\": [],\r\n  \"ingredientQuantities\": []\r\n}",
+							"raw": "{\r\n    \"id\": \"{{$guid}}\",\r\n    \"name\": \"string\",\r\n    \"image\": \"string\",\r\n    \"authorId\": \"string\",\r\n    \"authorname\": \"string\",\r\n    \"personNumber\": 0,\r\n    \"cookingDuration\": \"2024-09-10T15:52:12.337Z\",\r\n    \"deleted\": true,\r\n    \"steps\": [],\r\n    \"categories\": [\r\n        {\r\n            \"CategoryId\": \"a54d6635-d675-4d83-ac6b-82d37f4b9972\"\r\n        }\r\n    ],\r\n    \"ingredientQuantities\": []\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1087,7 +1087,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"@odata.context\": \"https://localhost:7011/odata/$metadata#Recips/$entity\",\r\n    \"Id\": \"e29d304b-b47b-4c24-a868-5681baeb8a55\",\r\n    \"Name\": \"patchstring\",\r\n    \"Image\": \"patchstring\",\r\n    \"AuthorId\": \"string\",\r\n    \"Authorname\": \"patchstring\",\r\n    \"PersonNumber\": 0,\r\n    \"CookingDuration\": \"2024-09-10T17:52:12.337+02:00\",\r\n    \"Deleted\": false,\r\n    \"Categories\": [],\r\n    \"IngredientQuantities\": []\r\n}",
+							"raw": "{\r\n    \"Id\": \"b7022d96-4214-494f-be37-d7bc7134ee45\",\r\n    \"Name\": \"string\",\r\n    \"Image\": \"string\",\r\n    \"AuthorId\": \"string\",\r\n    \"Authorname\": \"string\",\r\n    \"PersonNumber\": 0,\r\n    \"CookingDuration\": \"2024-09-10T17:52:12.337+02:00\",\r\n    \"Deleted\": true,\r\n    \"Categories\": [\r\n        {\r\n            \"RecipId\": \"b7022d96-4214-494f-be37-d7bc7134ee45\",\r\n            \"CategoryId\": \"a54d6635-d675-4d83-ac6b-82d37f4b9972\"\r\n        }\r\n    ],\r\n    \"IngredientQuantities\": []\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1095,13 +1095,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/odata/Recips(e29d304b-b47b-4c24-a868-5681baeb8a55)",
+							"raw": "{{url}}/odata/Recips(b7022d96-4214-494f-be37-d7bc7134ee45)",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"odata",
-								"Recips(e29d304b-b47b-4c24-a868-5681baeb8a55)"
+								"Recips(b7022d96-4214-494f-be37-d7bc7134ee45)"
 							]
 						}
 					},

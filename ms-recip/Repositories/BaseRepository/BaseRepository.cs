@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace ms_recip.Repositories.BaseRepository;
 
-public class BaseRepository<T>(
+public abstract class BaseRepository<T>(
     DatabaseContext databaseContext,
     ILogger logger,
     DbSet<T> dbSet) 
@@ -54,7 +54,7 @@ public class BaseRepository<T>(
         }
     }
     
-    public async Task<MethodResult<T>> UpdateItemAsync(T model)
+    public virtual async Task<MethodResult<T>> UpdateItemAsync(T model)
     {
         try
         {

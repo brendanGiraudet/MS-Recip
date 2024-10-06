@@ -29,7 +29,8 @@ public static class ServiceCollectionExtension
     {
         var connectionString = configuration.GetConnectionString("Database");
         services.AddDbContext<DatabaseContext>(options =>
-            options.UseSqlite(connectionString));
+            options.UseSqlite(connectionString)
+                   .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
     }
 
     public static void AddODataContext(this IServiceCollection services)
